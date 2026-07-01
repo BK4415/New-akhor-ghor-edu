@@ -1,0 +1,40 @@
+<!-- admin/index.html -->
+<!DOCTYPE html>
+<html lang="as">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্ৰশাসক পেনেল — আখৰ ঘৰ</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div id="admin-login" class="admin-card">
+        <div class="admin-logo">অ</div>
+        <h2>প্ৰশাসক লগইন</h2>
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
+        <button id="login-btn">প্ৰৱেশ কৰক</button>
+        <p id="error-msg"></p>
+    </div>
+
+    <div id="admin-dash" class="hidden">
+        <header class="dash-header">
+            <h3>⚙ ড্যাশবৰ্ড</h3>
+            <button id="logout">প্ৰস্থান</button>
+        </header>
+        
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="words">শব্দ</button>
+            <button class="tab-btn" data-tab="media">মিডিয়া</button>
+        </div>
+
+        <div id="tab-words" class="tab-content">
+            <div id="editor-list"></div>
+            <button id="save-words" class="primary-btn">সকলো সংৰক্ষণ কৰক</button>
+        </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
