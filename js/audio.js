@@ -1,37 +1,37 @@
 // js/audio.js
-import { Storage } from './storage.js';
-
 export const AudioEngine = {
-    enabled: true,
+    unlocked: false,
+
+    unlock() {
+        if (this.unlocked) return;
+        // Native trick to unlock speech synthesis
+        const silent = new SpeechSynthesisUtterance('');
+        window.speechSynthesis.speak(silent);
+        this.unlocked = true;
+    },
 
     speak(text) {
-        if (!this.enabled || !window.speechSynthesis) return;
+        this.unlock();
         window.speechSynthesis.cancel();
         const msg = new SpeechSynthesisUtterance(text);
-        msg.lang = 'as-IN'; // Using Bengali as the high-quality base for Assamese
-        msg.rate = 0.85;
-        msg.pitch = 1.0;
+        msg.lang = 'bn-IN'; 
+        msg.rate = 0.9;
         window.speechSynthesis.speak(msg);
     },
 
-    async playEntry(entry, type) {
-        const overrides = Storage.getOverrides();
-        const id = entry.id || entry.letter || entry.n;
+    playEntry(item, type) {
+        // Logic check: priority for Admin Overrides
+        const overrides = JSON.parse(localStorage.getItem('akhor_cms_overrides') || '{"audio":{}}');
+        const id = item.id || item.letter || item.n;
 
-        // 1. Check for Admin Uploaded Audio first
         if (overrides.audio[id]) {
             const audio = new Audio(overrides.audio[id]);
             audio.play();
-            return;
-        }
-
-        // 2. Fallback to TTS Sequence (The logic you specified)
-        if (type === 'vowel') {
-            this.speak(`${entry.letter}. ${entry.word}`);
-        } else if (type === 'consonant') {
-            this.speak(`${entry.letter}. ${entry.letter} তে ${entry.word}`);
-        } else if (type === 'number') {
-            this.speak(`${entry.numeral}. ${entry.w}`);
+        } else {
+            // Sequential Pronunciation
+            if (type === 'vowel') this.speak(`${item.letter}. ${item.word}`);
+            if (type === 'consonant') this.speak(`${item.letter}. ${item.letter} তে ${item.word}`);
+            if (type === 'number') this.speak(`${item.numeral}. ${item.w}`);
         }
     }
 };
