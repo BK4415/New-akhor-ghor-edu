@@ -26,4 +26,45 @@
     /* Device Safe Areas */
     --safe-top: env(safe-area-inset-top);
     --safe-bottom: env(safe-area-inset-bottom);
+    
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Deep Dark Backgrounds */
+        --bg-cream: #121418;      /* Deep Charcoal instead of Cream */
+        --bg-paper: #1E2128;      /* Lighter Charcoal for cards */
+        --bg-nav: #1E2128;
+        
+        /* High Contrast Text */
+        --text-main: #FDF6E4;     /* Cream text for readability */
+        --text-muted: #8E95A2;    /* Soft grey */
+        
+        /* Adapt Shadows for Dark Mode */
+        --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+        --shadow-md: 0 10px 24px rgba(0,0,0,0.5);
+        
+        /* Adjust Primary Colors for better contrast on dark */
+        --primary: #FF6F69;       /* Slightly softer red */
+        --secondary: #2AB885;     /* Brighter green */
+    }
+    
+    /* Native Dark Mode Tweaks */
+    .app-bar {
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .bottom-nav {
+        border-top: 1px solid rgba(255,255,255,0.05);
+        background: #1E2128;
+    }
+    
+    .m-card {
+        background: #1E2128;
+    }
+
+    input, .canvas-area {
+        background: #1A1D23;
+        border-color: #2AB885;
+    }
+}
 }
