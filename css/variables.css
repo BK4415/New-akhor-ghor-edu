@@ -1,0 +1,23 @@
+/* css/variables.css */
+:root {
+    --primary: #FF5A52;
+    --primary-dark: #E8453D;
+    --secondary: #146B4B;
+    --accent: #F6C445;
+    --bg-cream: #FDF6E4;
+    --bg-paper: #FFFFFF;
+    --text-main: #1F2430;
+    --text-muted: #5B6070;
+    --shadow-premium: 0 12px 30px rgba(0,0,0,0.06);
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --safe-top: env(safe-area-inset-top);
+    --safe-bottom: env(safe-area-inset-bottom);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body, html { 
+    margin: 0; padding: 0; height: 100%; width: 100%; 
+    font-family: system-ui, sans-serif; background: var(--bg-cream);
+    overflow: hidden; position: fixed;
+}
