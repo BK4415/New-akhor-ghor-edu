@@ -1,0 +1,50 @@
+/* Prevent all typical browser behaviors */
+* {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+    outline: none;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* No browser scroll */
+    background-color: var(--bg-cream);
+    position: fixed; /* Stops elastic bounce on iOS/Android WebView */
+    width: 100%;
+}
+
+#router-outlet {
+    height: calc(100vh - 130px); /* Adjust based on header/footer */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+}
+
+/* Premium Navigation Bar */
+.bottom-nav {
+    height: 70px;
+    background: var(--bg-nav);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: var(--safe-bottom);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.03);
+}
+
+.nav-item svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-item.active {
+    color: var(--primary);
+}
+
+.nav-item.active svg {
+    transform: scale(1.2);
+    stroke: var(--primary);
+}
