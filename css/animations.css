@@ -1,33 +1,10 @@
-/* js/modules/games.js feedback animation */
-.quiz-overlay {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(4px);
-    z-index: 1000;
-    animation: fadeIn 0.3s ease forwards;
-}
-
-.pop-icon {
-    width: 120px;
-    height: 120px;
-    stroke-width: 2;
-    fill: none;
-    transform: scale(0);
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.success .pop-icon { stroke: var(--secondary); }
-.error .pop-icon { stroke: var(--primary); }
-
-@keyframes popIn {
-    to { transform: scale(1); }
-}
-
 /* Page Transitions */
+.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
 .fade-in {
     animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -43,40 +20,30 @@
     }
 }
 
-/* Correct/Wrong Option feedback */
-.opt-btn.correct {
-    background: var(--secondary) !important;
-    color: white !important;
-    border-color: var(--secondary);
-    animation: pulseCorrect 0.4s ease;
+/* Quiz Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-.opt-btn.wrong {
-    background: var(--primary) !important;
-    color: white !important;
-    animation: shakeError 0.4s ease;
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-@keyframes shakeError {
+/* Shaking Error Effect */
+.shake {
+    animation: shakeAnim 0.4s ease-in-out;
+}
+
+@keyframes shakeAnim {
     0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
 }
-/* Premium Haptic Feedback */
-.nav-item, .vowel-card, .num-card, .primary-btn {
-    transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
-    cursor: pointer;
-}
-
-.nav-item:active, .vowel-card:active, .num-card:active {
-    transform: scale(0.92); /* Subtle shrink on press */
-    filter: brightness(0.9);
-}
-
-/* Smooth Page Reveal */
-#router-outlet {
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.fade-out { opacity: 0; transform: translateY(10px); }
-.fade-in { opacity: 1; transform: translateY(0); }
