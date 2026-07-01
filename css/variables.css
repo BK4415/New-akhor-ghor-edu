@@ -1,23 +1,29 @@
-/* css/variables.css */
 :root {
-    --primary: #FF5A52;
+    /* Brand Palette */
+    --primary: #FF5A52;       /* Red Accent */
     --primary-dark: #E8453D;
-    --secondary: #146B4B;
-    --accent: #F6C445;
-    --bg-cream: #FDF6E4;
+    --secondary: #146B4B;     /* Deep Green */
+    --accent: #F6C445;        /* Gold */
+    --bg-cream: #FDF6E4;      /* Background */
     --bg-paper: #FFFFFF;
+    
+    /* Semantic Colors */
+    --success: #5FCB78;
+    --error: #FF6F72;
     --text-main: #1F2430;
     --text-muted: #5B6070;
-    --shadow-premium: 0 12px 30px rgba(0,0,0,0.06);
+    
+    /* Native Shadows */
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 24px rgba(31,36,48,0.08);
+    --shadow-lg: 0 15px 35px rgba(255,90,82,0.15);
+    
+    /* Shapes */
     --radius-xl: 32px;
     --radius-lg: 24px;
+    --radius-md: 16px;
+    
+    /* Device Safe Areas */
     --safe-top: env(safe-area-inset-top);
     --safe-bottom: env(safe-area-inset-bottom);
-}
-
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body, html { 
-    margin: 0; padding: 0; height: 100%; width: 100%; 
-    font-family: system-ui, sans-serif; background: var(--bg-cream);
-    overflow: hidden; position: fixed;
 }
