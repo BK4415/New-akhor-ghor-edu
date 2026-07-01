@@ -48,3 +48,50 @@ html, body {
     transform: scale(1.2);
     stroke: var(--primary);
 }
+.banner {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: var(--radius-xl);
+    padding: 30px;
+    color: white;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px rgba(255, 90, 82, 0.2);
+}
+
+.module-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.m-card {
+    border: none;
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    box-shadow: var(--shadow-premium);
+}
+
+.m-card.gold { border-bottom: 5px solid var(--accent); }
+.m-card.green { border-bottom: 5px solid var(--secondary); }
+
+.m-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.m-info b { display: block; font-size: 16px; color: var(--text-main); }
+.m-info span { font-size: 12px; color: var(--text-muted); }
+
+.fab-audio {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary);
+    box-shadow: 0 8px 20px rgba(255, 90, 82, 0.3);
+    cursor: pointer;
+}
