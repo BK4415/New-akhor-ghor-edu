@@ -62,3 +62,21 @@
     25% { transform: translateX(-10px); }
     75% { transform: translateX(10px); }
 }
+/* Premium Haptic Feedback */
+.nav-item, .vowel-card, .num-card, .primary-btn {
+    transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.nav-item:active, .vowel-card:active, .num-card:active {
+    transform: scale(0.92); /* Subtle shrink on press */
+    filter: brightness(0.9);
+}
+
+/* Smooth Page Reveal */
+#router-outlet {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fade-out { opacity: 0; transform: translateY(10px); }
+.fade-in { opacity: 1; transform: translateY(0); }
