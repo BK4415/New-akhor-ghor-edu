@@ -8,7 +8,7 @@ export const AudioEngine = {
         if (!this.enabled || !window.speechSynthesis) return;
         window.speechSynthesis.cancel();
         const msg = new SpeechSynthesisUtterance(text);
-        msg.lang = 'bn-IN'; // Using Bengali as the high-quality base for Assamese
+        msg.lang = 'As-IN'; // Using Bengali as the high-quality base for Assamese
         msg.rate = 0.85;
         msg.pitch = 1.0;
         window.speechSynthesis.speak(msg);
