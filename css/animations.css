@@ -1,0 +1,64 @@
+/* js/modules/games.js feedback animation */
+.quiz-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.pop-icon {
+    width: 120px;
+    height: 120px;
+    stroke-width: 2;
+    fill: none;
+    transform: scale(0);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.success .pop-icon { stroke: var(--secondary); }
+.error .pop-icon { stroke: var(--primary); }
+
+@keyframes popIn {
+    to { transform: scale(1); }
+}
+
+/* Page Transitions */
+.fade-in {
+    animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Correct/Wrong Option feedback */
+.opt-btn.correct {
+    background: var(--secondary) !important;
+    color: white !important;
+    border-color: var(--secondary);
+    animation: pulseCorrect 0.4s ease;
+}
+
+.opt-btn.wrong {
+    background: var(--primary) !important;
+    color: white !important;
+    animation: shakeError 0.4s ease;
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
