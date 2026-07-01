@@ -1,0 +1,72 @@
+/* Vowel Cards Grid */
+.vowel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding-top: 10px;
+}
+
+.vowel-card {
+    background: var(--bg-paper);
+    aspect-ratio: 1/1.2;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-premium);
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+}
+
+.vowel-card:active {
+    background: var(--bg-cream);
+    border-color: var(--primary);
+    transform: scale(0.92);
+}
+
+.v-letter {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.v-footer {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    color: var(--text-muted);
+}
+
+/* Tracing UI */
+.canvas-area {
+    position: relative;
+    background: #FFF;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    border: 4px solid var(--accent);
+    height: 350px;
+}
+
+.guide-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.05);
+    pointer-events: none;
+    z-index: 0;
+}
+
+#drawing-canvas {
+    position: relative;
+    z-index: 1;
+    touch-action: none;
+}
