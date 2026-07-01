@@ -2,113 +2,57 @@
 <html lang="as">
 <head>
     <meta charset="UTF-8">
-    <!-- Critical: viewport-fit=cover handles the status bar/notch on modern Android/iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- App Identity -->
     <title>আখৰ ঘৰ</title>
-    <meta name="theme-color" content="#FF5A52">
-    <meta name="description" content="শিশুৰ বাবে অসমীয়া ভাষা শিকাৰ ঘৰ">
+    <meta name="theme-color" content="#FF5A52" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
     
-    <!-- PWA & Mobile Fullscreen Tags -->
     <link rel="manifest" href="manifest.json">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- CSS Connection -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
 
-    <!-- Premium Stylesheets (Modular) -->
-    <link rel="stylesheet" href="css/variables.css">   <!-- Colors & Tokens -->
-    <link rel="stylesheet" href="css/app.css">         <!-- Layout & Nav -->
-    <link rel="stylesheet" href="css/components.css">  <!-- UI Elements -->
-    <link rel="stylesheet" href="css/animations.css">  <!-- Native Transitions -->
-
-    <style>
-        /* Immediate style to prevent white flash before CSS loads */
-        body { background-color: #FDF6E4; margin: 0; overflow: hidden; }
-    </style>
+    <style>body { background-color: #FDF6E4; margin: 0; overflow: hidden; }</style>
 </head>
 <body class="native-mode">
 
-    <!-- 1. PREMIUM NATIVE SPLASH SCREEN -->
-    <!-- This is the first thing the user sees; hides the JS loading process -->
+    <!-- Native Splash Screen -->
     <div id="splash-screen">
-        <div class="splash-container">
-            <div class="splash-logo">অ</div>
-            <h1 class="splash-title">আখৰ ঘৰ</h1>
-            <div class="splash-loader">
-                <div class="loader-progress"></div>
-            </div>
-            <p class="splash-tagline">শিকাৰ এক নতুন যাত্ৰা</p>
-        </div>
-        <div class="splash-footer">Developed by Biki</div>
+        <div class="splash-logo">অ</div>
+        <div class="splash-loader"><div class="loader-progress"></div></div>
+        <p style="margin-top:20px; font-weight:700; color:#5B6070;">আখৰ ঘৰ</p>
     </div>
 
-    <!-- 2. MAIN APP CONTENT (The Shell) -->
+    <!-- App Shell -->
     <div id="app-shell">
-        
-        <!-- Native-style App Bar -->
         <header class="app-bar">
-            <button id="menu-trigger" class="icon-btn" data-icon="menu" aria-label="Menu"></button>
+            <button id="menu-trigger" class="icon-btn" data-icon="menu"></button>
             <div class="app-identity">
                 <span class="logo-small">অ</span>
                 <h1 id="page-title">আখৰ ঘৰ</h1>
             </div>
-            <button id="audio-toggle" class="icon-btn" data-icon="speaker" aria-label="Toggle Sound"></button>
+            <button id="audio-toggle" class="icon-btn" data-icon="speaker"></button>
         </header>
 
-        <!-- ROUTER OUTLET: This is where pages (Home, Vowels, etc.) are injected -->
-        <main id="router-outlet" class="scroll-container"></main>
+        <!-- Content Area -->
+        <main id="router-outlet" class="fade-in"></main>
 
-        <!-- Premium Bottom Navigation -->
+        <!-- Navigation -->
         <nav class="bottom-nav">
-            <button class="nav-item active" data-link="home">
-                <div class="nav-icon" data-icon="home"></div>
-                <span>ঘৰ</span>
-            </button>
-            <button class="nav-item" data-link="vowels">
-                <div class="nav-icon" data-icon="learn"></div>
-                <span>শিকা</span>
-            </button>
-            <button class="nav-item" data-link="games">
-                <div class="nav-icon" data-icon="game"></div>
-                <span>খেল</span>
-            </button>
-            <button class="nav-item" data-link="profile">
-                <div class="nav-icon" data-icon="profile"></div>
-                <span>মই</span>
-            </button>
+            <button class="nav-item active" data-link="home"><div class="nav-icon" data-icon="home"></div><span>ঘৰ</span></button>
+            <button class="nav-item" data-link="vowels"><div class="nav-icon" data-icon="learn"></div><span>শিকা</span></button>
+            <button class="nav-item" data-link="games"><div class="nav-icon" data-icon="game"></div><span>খেল</span></button>
+            <button class="nav-item" data-link="profile"><div class="nav-icon" data-icon="profile"></div><span>মই</span></button>
         </nav>
-
     </div>
 
-    <!-- 3. DRAWERS & OVERLAYS -->
     <div id="drawer-overlay" class="overlay"></div>
-    <aside id="app-drawer" class="native-drawer">
-        <!-- Content injected by js/components/drawer.js -->
-    </aside>
+    <aside id="app-drawer"></aside>
 
-    <!-- UI Notification/Feedback Toast (For Quiz/Admin) -->
-    <div id="toast-container"></div>
-
-    <!-- 4. CORE SCRIPTS -->
-    <!-- Using type="module" allows the use of import/export for better architecture -->
+    <!-- Main Logic -->
     <script type="module" src="js/app.js"></script>
-
-    <!-- PWA Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('SW Registered'))
-                .catch(err => console.log('SW Failed', err));
-            });
-        }
-
-        // Prevent typical browser "context menu" for a more native feel
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        
-        // Prevent "Pull-to-refresh" on Chrome Android
-        document.body.style.overscrollBehaviorY = 'contain';
-    </script>
-
 </body>
-    </html>
+</html>
