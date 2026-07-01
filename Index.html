@@ -1,0 +1,52 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="as">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FF5A52">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>আখৰ ঘৰ</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">অ</div>
+            <div class="loader-bar"><span></span></div>
+            <p>আখৰ ঘৰ</p>
+        </div>
+    </div>
+
+    <div id="app-shell">
+        <header class="app-bar">
+            <button id="menu-trigger" class="svg-icon-btn" data-icon="menu"></button>
+            <h1 id="page-title">আখৰ ঘৰ</h1>
+            <button id="audio-toggle" class="svg-icon-btn" data-icon="speaker"></button>
+        </header>
+
+        <main id="router-outlet"></main>
+
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-link="home" id="nav-home"></button>
+            <button class="nav-item" data-link="learn" id="nav-learn"></button>
+            <button class="nav-item" data-link="games" id="nav-games"></button>
+            <button class="nav-item" data-link="profile" id="nav-profile"></button>
+        </nav>
+    </div>
+
+    <div id="drawer-overlay"></div>
+    <aside id="app-drawer"></aside>
+
+    <script type="module" src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
