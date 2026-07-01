@@ -95,3 +95,34 @@ html, body {
     box-shadow: 0 8px 20px rgba(255, 90, 82, 0.3);
     cursor: pointer;
 }
+/* Prevent Content Overlap with Bottom Nav */
+#router-outlet {
+    height: 100vh;
+    padding-top: 70px; /* Space for Header */
+    padding-bottom: 90px; /* Space for Nav */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix Splash Screen Overlay */
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999; /* Highest priority */
+    background: var(--bg-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+/* Native Card Feedback */
+.vowel-card:active, .m-card:active {
+    transform: scale(0.95);
+    background: #f8f8f8;
+}
+
+/* Hide Scrollbars for Native Look */
+#router-outlet::-webkit-scrollbar {
+    display: none;
+    }
