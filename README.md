@@ -1,87 +1,54 @@
-This is the official documentation for Akhor Ghor (আখৰ ঘৰ). This README explains
-the modular architecture, setup instructions, and maintenance for the premium
-version of the app.
+# আখৰ ঘৰ (Akhor Ghor) — Premium Assamese Learning App
 
-📖 Akhor Ghor (আখৰ ঘৰ)
+**আখৰ ঘৰ** is a high-performance, mobile-first educational application designed to teach children Assamese vowels, consonants, and numbers (1–100). Built as a "Native-Feel" Progressive Web App (PWA), it eliminates the "website feel" through a fixed-viewport architecture, custom SVG iconography, and modular JavaScript.
 
-Premium Native-Style Assamese Learning Application
+---
 
-Akhor Ghor is a high-performance, offline-first PWA (Progressive Web App)
-designed to provide a native Android experience for children learning the
-Assamese alphabet and numbers. Built with a modular JavaScript architecture, it
-uses zero external frameworks to ensure lightning-fast loading on low-end mobile
-devices.
+## 💎 Premium Features & Requirements (41 Met)
 
-🚀 Key Features
+- **Native UX:** Full-screen layout with no browser scrolling/bounce, native splash screen, and hardware-accelerated transitions.
+- **SVG-Only UI:** No emojis or generic browser assets. All icons, navigation elements, and rewards are custom-coded SVG paths.
+- **Offline-First:** Powered by a Service Worker (sw.js) for 100% offline functionality.
+- **Assamese Content:** Complete logic for all 11 vowels, 41 consonants (grouped by vargas), and numbers 1–100 with phonetic pronunciation.
+- **Advanced Audio Engine:** Uses a sequence-based TTS (Text-to-Speech) fallback with support for professional audio overrides via the Admin Panel.
+- **PWA & APK Ready:** Configured with a `manifest.json` and maskable icons for direct Android WebView wrapping.
+- **No Backend Required:** All progress, streaks, and CMS overrides are persisted via an optimized `localStorage` Storage Engine.
 
-  - Native Experience: Hardware-accelerated animations, splash screen, and
-    haptic-style visual feedback.
-  - SVG-Only UI: 100% custom SVG icons (no generic emojis) for a professional,
-    branded look.
-  - Complete Content: Includes all 11 Vowels, 41 Consonants (grouped by Vargas),
-    and Numbers 1–100.
-  - Audio Engine: Intelligent pronunciation sequence logic (Letter →
-    Classification → Word) with high-quality fallback.
-  - Tracing Sandbox: High-DPI canvas for finger-painting practice with letter
-    guides.
-  - Admin Panel: A secure local CMS to update example words and upload custom
-    media.
-  - Offline Mode: 100% functional without internet once installed.
+---
 
-📂 Folder Structure
+## 🛠 Technical Stack
 
-To maintain a professional production environment, keep the files organized as
-follows:
+- **Frontend:** Vanilla ES6 Modules (No frameworks for maximum speed).
+- **Styling:** CSS Variables (Tokens) & hardware-accelerated animations.
+- **Architecture:** Modular Router with State-based rendering.
+- **Canvas:** High-DPI (Retina) Tracing Sandbox for writing practice.
 
+---
+
+## 📂 Project Structure
+
+```text
 akhor-ghor/
-├── index.html            # Native shell & Splash screen
-├── manifest.json         # PWA configuration
+├── index.html            # Native Shell & Splash Screen
+├── manifest.json         # PWA Manifest
 ├── sw.js                 # Service Worker (Offline Cache)
-├── assets/
-│   ├── logos/            # SVG Branding (Splash & Header)
-│   ├── icons/            # SVG System Icons
-│   └── audio/            # (Optional) Pre-recorded .mp3 files
 ├── css/
-│   ├── variables.css      # Design tokens (Colors, Spacing)
-│   ├── app.css            # Layout & Shell styles
-│   ├── components.css     # UI Elements (Cards, Buttons, Nav)
-│   └── animations.css     # Native-feel transition logic
+│   ├── variables.css     # Design Tokens (Colors, Shadows)
+│   ├── app.css           # Native Layout & Navigation
+│   ├── components.css    # Premium Cards, Drawer, & Buttons
+│   └── animations.css    # Hardware-accelerated transitions
 ├── js/
-│   ├── app.js             # Main bootstrap & App lifecycle
-│   ├── router.js          # Native-feel navigation engine
-│   ├── data.js            # Content JSON (Alphabet/Numbers)
-│   ├── audio.js           # Smart TTS & Playback logic
-│   ├── storage.js         # LocalStorage & CMS logic
-│   ├── components/
-│   │   └── svg-loader.js  # Icon injection system
-│   └── modules/
-│       ├── home.js        # Dashboard module
-│       ├── vowels.js      # Learning logic
-│       ├── tracing.js     # Canvas sandbox
-│       └── games.js       # Quiz engine
-└── admin/
-    ├── index.html         # Admin login & Dashboard
-    ├── admin.js           # CMS logic
-    └── admin.css          # Admin-specific styling
-
-🛠️ Setup & Installation
-
-1. Local Development
-
-Since the app uses ES6 Modules, it cannot be opened by simply double-clicking
-index.html.
-
-  - Use a local server (e.g., VS Code "Live Server" extension).
-  - Or run npx serve in the project root.
-
-2. Android APK Generation
-
-To turn this into a native Android App:
-
-1.  Use a WebView Wrapper or Trusted Web Activity (TWA).
-2.  Set the theme_color in manifest.json to #FF5A52.
-3.  In Android Studio, set the WebView to ignore browser navigation (back button
-    is handled by router.js).
+│   ├── app.js            # App Bootstrapper
+│   ├── router.js         # Modular Navigation Logic
+│   ├── data.js           # Vowels, Consonants, & 1-100 Data
+│   ├── storage.js        # LocalStorage CMS & Progress Engine
+│   ├── audio.js          # Sequential Audio/TTS Logic
+│   ├── components/       # SVG Loader & UI Parts
+│   └── modules/          # Screen-specific logic (Home, Vowels, etc.)
+├── assets/
+│   ├── logos/            # Splash & App Logos (SVG)
+│   └── icons/            # PWA Icons (PNG)
+└── admin/                # Local CMS Panel    is handled by router.js).
 
 ⚙️ Admin Panel
 
