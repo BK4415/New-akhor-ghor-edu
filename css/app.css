@@ -1,96 +1,116 @@
-/* Prevent all typical browser behaviors */
 * {
-    -webkit-user-select: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-    user-select: none;
-    outline: none;
+    user-select: none; /* Prevents text selection like an app */
 }
 
-html, body {
+body, html {
+    margin: 0;
+    padding: 0;
     height: 100%;
-    overflow: hidden; /* No browser scroll */
-    background-color: var(--bg-cream);
-    position: fixed; /* Stops elastic bounce on iOS/Android WebView */
     width: 100%;
+    overflow: hidden; /* Prevent body scroll */
+    background: var(--bg-cream);
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
+    color: var(--text-main);
 }
 
+#app-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Fixed Header */
+.app-bar {
+    height: calc(60px + var(--safe-top));
+    padding-top: var(--safe-top);
+    background: var(--bg-paper);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+}
+
+.app-identity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-small {
+    background: var(--primary);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+}
+
+.app-bar h1 {
+    font-size: 18px;
+    margin: 0;
+    color: var(--secondary);
+}
+
+/* Scrollable Content Area */
 #router-outlet {
-    height: calc(100vh - 130px); /* Adjust based on header/footer */
+    flex: 1;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     padding: 20px;
+    -webkit-overflow-scrolling: touch; /* Smooth iOS-like scroll */
 }
 
-/* Premium Navigation Bar */
+#router-outlet::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for native look */
+}
+
+/* Fixed Bottom Navigation */
 .bottom-nav {
-    height: 70px;
-    background: var(--bg-nav);
+    height: calc(70px + var(--safe-bottom));
+    padding-bottom: var(--safe-bottom);
+    background: var(--bg-nav, #ffffff);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    padding-bottom: var(--safe-bottom);
     box-shadow: 0 -4px 20px rgba(0,0,0,0.03);
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
-.nav-item svg {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 4px;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.nav-item {
+    border: none;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    flex: 1;
 }
 
 .nav-item.active {
     color: var(--primary);
 }
 
+.nav-icon svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 .nav-item.active svg {
-    transform: scale(1.2);
+    transform: scale(1.15) translateY(-2px);
     stroke: var(--primary);
-}
-.banner {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    border-radius: var(--radius-xl);
-    padding: 30px;
-    color: white;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 20px rgba(255, 90, 82, 0.2);
-}
-
-.module-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.m-card {
-    border: none;
-    background: white;
-    padding: 20px;
-    border-radius: var(--radius-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    box-shadow: var(--shadow-premium);
-}
-
-.m-card.gold { border-bottom: 5px solid var(--accent); }
-.m-card.green { border-bottom: 5px solid var(--secondary); }
-
-.m-icon {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.m-info b { display: block; font-size: 16px; color: var(--text-main); }
-.m-info span { font-size: 12px; color: var(--text-muted); }
-
-.fab-audio {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: none;
+}    border: none;
     background: var(--primary);
     box-shadow: 0 8px 20px rgba(255, 90, 82, 0.3);
     cursor: pointer;
